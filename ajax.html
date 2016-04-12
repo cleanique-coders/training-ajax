@@ -5,15 +5,36 @@
 	<link rel="stylesheet" type="text/css" href="css/cleanique.coders.css">
 </head>
 <body>
-<div class="push"></div>
 
-<div class="container">
-	<div class="content">
-		<span id="ajaxButton" class="btn-outline">
-		  Make a request
-		</span>		
+<div class="wrapper">
+	<div class="push"></div>
+	<div class="container">
+		<div class="content">
+			<span id="getbtn" class="btn-outline">
+			  Make a GET request
+			</span>	
+			<span id="postbtn" class="btn-outline">
+			  Make a POST request
+			</span>		
+		</div>
 	</div>
 </div>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
 
+	document.getElementById('getbtn').onclick = function() {
+		aget('get.php',function(response){
+			var json = JSON.parse(response.responseText);
+			console.log([response,json]);
+		});
+	};
+
+	document.getElementById('postbtn').onclick = function() {
+		apost('post.php','username='+encodeURIComponent('lorem ipsum'),function(response){
+			var json = JSON.parse(response.responseText);
+			console.log([response,json]);
+		});
+	};
+</script>
 </body>
 </html>
